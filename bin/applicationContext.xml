@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<bean id="stuClass" class="spring.StuClass">
+		<constructor-arg name="cid" value="8888"></constructor-arg>
+		<constructor-arg name="cname" value="JAVA8班"></constructor-arg>
+	</bean>
+
+	<bean id="junKai" class="spring.Student">
+		<!-- 基本类型（包装类） 或 String类型 -->
+		<property name="sid" value="1000"></property>	
+		<property name="sname" value="俊凯"></property>	
+		
+		<!-- 赋空值-->
+		<!-- <property name="telepehone" value=""></property>	 -->
+		
+		<!-- 赋null值-->
+		<property name="telepehone">
+			<null></null>
+		</property>	
+		
+		<!-- 引用类型 -->
+		<property name="stuClass" ref="stuClass"></property>
+		
+		<!-- 数组 -->
+		<property name="hobbies">
+			<array>
+				<value>玩手机</value>
+				<value>熬夜</value>
+				<value>敲代码</value>
+			</array>
+		</property>
+		
+		<!-- List集合:有序，允许重复 -->
+		<property name="scores">
+			<list>
+				<value>100</value>
+				<value>99</value>
+				<value>88</value>
+				<value>100</value><!-- 重复值 -->
+			</list>
+		</property>
+		<property name="list">
+			<list>
+				<ref bean="stuClass"/>
+				<ref bean="stuClass"/><!-- 重复值 -->
+				<ref bean="stuClass"/><!-- 重复值 -->
+			</list>
+		</property>
+		
+		
+		<!-- Set集合：无序，不允许重复 -->
+		<property name="courses">
+			<set>
+				<value>JAVA</value>
+				<value>PYTHON</value>
+				<value>PHP</value>
+				<value>JAVA</value><!-- 重复值 -->
+			</set>
+		</property>
+		<property name="set">
+			<set>
+				<ref bean="stuClass"/>
+				<ref bean="stuClass"/><!-- 重复值 -->
+				<ref bean="stuClass"/><!-- 重复值 -->
+			</set>
+		</property>
+		
+		<!-- Map集合 -->
+		<property name="courseAndScoreMap">
+			<map>
+				<entry key="JAVA" value="100"></entry>
+				<entry key="PYTHON" value="99"></entry>
+				<entry key="PHP" value="88"></entry>
+				<entry key="PHP" value="100"></entry><!-- 覆盖重复的key -->
+			</map>
+		</property>
+		
+		<!-- Properties类型 -->
+		<property name="properties">
+			<props>
+				<prop key="username">scott</prop>
+				<prop key="password">123456</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
